@@ -55,8 +55,8 @@ class TasksController < ApplicationController
 	# Strong Parameter
 	def task_params
 		#レコードからcontentのみを取り出す
-		#params.require(:task).permit(:content, :title)
-		params.require(:task).permit(:content)
+		#params.require(:task).permit(:content)
+		params.require(:task).permit(:content, :status)
 	end
 
 end

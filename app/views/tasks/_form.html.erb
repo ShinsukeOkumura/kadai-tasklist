@@ -9,11 +9,11 @@
 		</div>
 	<% end %>
 	
-	<%#= frm.label :title, 'タイトル' %>
-	<%#= frm.text_field :title %>
-	
 	<%= frm.label :content, 'タスク' %>
 	<%= frm.text_field :content %>
+	
+	<%= frm.label :status, '状態' %>
+	<%= frm.text_field :status %>
 	
 	<% frm.submit '登録' %>
 <% end %>
