@@ -1,11 +1,5 @@
 <h1>タスク新規作成用ページ</h1>
 
-<!-- form_for()関数を用いてフォームを生成 -->
-<%= form_for(@task) do |frm| %>
-	<%= frm.label :content, 'タスク' %>
-	<%= frm.text_field :content %>
-	
-	<%= frm.submit '登録' %>
-<% end %>
+<%= render 'form', task: @task %>
 
 <% link_to '一覧に戻る', tasks_path %>
