@@ -3,7 +3,8 @@ class TasksController < ApplicationController
 
 	def index
 		# Taskモデルを用いて、DBの全データを抽出
-		@tasks = Task.all
+		# @tasks = Task.all
+		@tasks = Task.all.page(params[:page])
 	end
 	
 	def create
@@ -12,6 +13,7 @@ class TasksController < ApplicationController
 		
 		if @task.save
 			flash[:success] = 'Taskが正常に登録されました.'
+			p :success
 			# redirect_to でcreateアクション後にshowアクションを実行し、show.html.erbを呼び出す.
 			redirect_to @task
 		else

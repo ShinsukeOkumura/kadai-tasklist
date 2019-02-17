@@ -1,19 +1,39 @@
-<%= form_for(task) do |frm| %>
-	<% if task.errors.any? %>
-		<div id="error_explanation">
-			<ul>
-				<% task.errors.full_messages.each do |message| %>
-					<li><%= message %></li>
-				<% end %>
-			</ul>
-		</div>
-	<% end %>
-	
-	<%= frm.label :content, 'タスク' %>
-	<%= frm.text_field :content %>
-	
-	<%= frm.label :status, '状態' %>
-	<%= frm.text_field :status %>
-	
-	<%= frm.submit '登録' %>
-<% end %>
+<div class="row">
+	<div class="col-xs-12 col-sm-offset-2 col-sm-8 col-lg-offset-3 col-lg-6">
+		<%= form_for(task) do |frm| %>
+			<% if task.errors.any? %>
+				<div class="alert alert-warning">
+					<ul>
+						<% task.errors.full_messages.each do |message| %>
+							<li><%= message %></li>
+						<% end %>
+					</ul>
+				</div>
+			<% end %>
+			
+			<div class="form-group">
+				<%= frm.label :content, 'タスク' %>
+				<%= frm.text_field :content, class: 'form-control' %>
+			</div>
+			
+			<div class="form-group">
+				<%= frm.label :status, '状態' %>
+				<%= frm.text_field :status, class: 'form-control' %>
+				
+				<!-- <div class="dropdown"> %>
+				<#%	<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"> %>
+				<#%		Status %>
+				<#%		<span class="caret"></span> %>
+				<#%	</button> %>
+				<#%	<ul class="dropdown-menu" role="menu"> %>
+				<#%		<li role="presentation"><a href="#">Finished</a></li> %>
+				<#%		<li role="presentation"><a href="#">Running</a></li> %>
+				<#%		<li role="presentation"><a href="#">Before Start</a></li> %>
+				<#%	</ul> %>
+				<#% </div> %>-->
+			</div>
+			<%= frm.submit '登録', class: 'btn-primary' %>
+		<% end %>
+	</div>
+</div>
+
