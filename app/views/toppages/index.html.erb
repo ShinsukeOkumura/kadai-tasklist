@@ -1,0 +1,95 @@
+<!-- <h1>Toppages#index</h1>
+<p>Find me in app/views/toppages/index.html.erb</p>
+-->
+<% debugFlag = 0 %>
+<% if debugFlag == 1 %>
+	<p><%= p "# in app/views/toppages/index.html.erb" %></p>
+<% end %>
+<% if logged_in? %>
+	<% if debugFlag == 1 %>
+		<p><%= p "logged_in? = ", logged_in? %></p>
+		<p>ログイン完了ユーザ: <%= current_user.name %></p>
+		<p>"root_url = ", root_url</p>
+	<% end %>
+  <div class="row">
+    <aside class="col-md-4">
+      <%#= render 'tasks/tasks', tasks: @tasks %>
+			<%= form_for(@task) do |f| %>
+				<!--
+				<div class="form-group">
+					<%#= f.text_area :content, class: 'form-control', rows: 1 %>
+				</div>
+				-->
+				<div class="form-group">
+        	<%= f.label :content, 'タスク' %>
+        	<%#= frm.text_field :content, class: 'form-control' %>
+					<%= f.text_area :content, class: 'form-control', rows: 1 %>
+      	</div>
+				<div class="form-group">
+					<%= f.label :status, '状態' %>	
+					<%#= f.text_field :status, class: 'form-control' %>
+					<%= f.select :status, [["Finished", "Finished"], ["Running", "Running"], ["Planed", "Planed"]], :prompt=>"選択してくだいさい", class: 'form-control' %>
+				</div>
+				<%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
+			<% end %>
+    </aside>
+		<div class="col-xs-8">
+			<!-- render 'xxx/yyy によって app/views/xxx/_yyy.html.erb を参照'-->
+			<!-- renderではpaginateが機能しなかったのでベタガキに変更する。 -->
+			<%#= render 'tasks/tasks', tasks: @tasks %>
+			<ul class="media-list">
+				<% debugFlag = 0 %>
+				<% if debugFlag == 1 %>
+					<p><%= p "# It is shown by \"app/views/tasks/_tasks.html.erb\"" %></p>
+				<% end %>
+			<table class="table table-striped">
+    	<thead>
+      	<tr>
+        	<th>id</th>
+					<th>タスク</th>
+					<th>状態</th>
+					<th>編集</th>
+        	<th>削除</th>
+        	<% if debugFlag == 1 %>
+          	<th>chk</th>
+        	<% end %>
+      	</tr>
+			</thead>
+			<tbody>
+      <% @tasks.each do |task| %>
+				<tr>
+					<% if current_user == task.user %>
+        		<td><%= link_to task.id, task %></td>
+					<% else %>
+						<td><%= task.id %></td>
+        	<% end %>
+          <td><%= task.content %></td>
+          <td><%= task.status %></td>
+          <% if current_user == task.user %>
+            <td><%= link_to "Edit", edit_task_path(task), class: 'btn btn-default btn-xs' %></td>
+            <td><%= link_to "Delete", task, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-xs' %></td>
+          <% else %>
+            <td>-</td>
+            <td>-</td>
+          <% end %>
+          <% if debugFlag == 1 %>
+            <td><%= task %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @tasks %>
+  <%#= paginate @user.tasks %>
+</ul>
+	  </div>
+	</div>
+<% else %>
+	<div class="center jumbotrom">
+		<div class="text-center">
+			<h1>Welcome to the Tasklist</h1>
+			<%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+		</div>
+	</div>
+<% end %>

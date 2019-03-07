@@ -1,0 +1,33 @@
+<% debugFlag = 0 %>
+<% if debugFlag == 1 %>
+	<h1><%= p "Users#show" %></h1>
+	<p>Find me in app/views/users/show.html.erb</p>
+	<p><%= p "@user = ", @user %></p>
+	<p><%= p "@user.id = ", @user.id %></p>
+	<p><%= p "@user.name = ", @user.name %></p>
+	<p><%= p "@user.email = ", @user.email %></p>
+	<p><%= p "@user.password_digest = ", @user.password_digest %></p>
+<% end %>
+<div class="row">
+  <aside class="col-xs-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @user.name %></h3>
+      </div>
+      <div class="panel-body">
+        <img class="media-object img-rounded img-responsive" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
+      </div>
+    </div>
+    <%#= render 'relationships/follow_button', user: @user %>
+  </aside>
+	<div class="col-xs-8">
+	<% if debugFlag == 1 %>
+		<p><%= p "# app/views/users/show.html.erb" %></p>
+		<p><%= p @tasks %></p>
+		<p><%= p @task %></p>
+		<p><%= p @user %></p>
+	<% end %>
+	<%#= render 'tasks/tasks', tasks: @user.tasks %>
+	<%= render 'tasks/tasks', tasks: @tasks %>
+	</div>
+</div>

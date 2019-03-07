@@ -18,21 +18,21 @@
 			
 			<div class="form-group">
 				<%= frm.label :status, '状態' %>
-				<%= frm.text_field :status, class: 'form-control' %>
-				
+				<%#= frm.text_field :status, class: 'form-control' %>
+				<%= frm.select :status, [["Finished", "Finished"], ["Running", "Running"],["Planed", "Planed"]], :prompt=>"選択してくだいさい", class: 'form-control' %>
 				<!-- <div class="dropdown"> %>
-				<#%	<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"> %>
-				<#%		Status %>
-				<#%		<span class="caret"></span> %>
-				<#%	</button> %>
-				<#%	<ul class="dropdown-menu" role="menu"> %>
-				<#%		<li role="presentation"><a href="#">Finished</a></li> %>
-				<#%		<li role="presentation"><a href="#">Running</a></li> %>
-				<#%		<li role="presentation"><a href="#">Before Start</a></li> %>
-				<#%	</ul> %>
-				<#% </div> %>-->
+				<%#	<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"> %>
+				<%#		Status %>
+				<%#		<span class="caret"></span> %>
+				<%#	</button> %>
+				<%#	<ul class="dropdown-menu" role="menu"> %>
+				<%#		<li role="presentation"><a href="#">Finished</a></li> %>
+				<%#		<li role="presentation"><a href="#">Running</a></li> %>
+				<%#		<li role="presentation"><a href="#">Before Start</a></li> %>
+				<%#	</ul> %>
+				<%# </div> %>-->
 			</div>
-			<%= frm.submit '登録', class: 'btn-primary' %>
+			<%= frm.submit '更新', class: 'btn-primary' %>
 		<% end %>
 	</div>
 </div>
