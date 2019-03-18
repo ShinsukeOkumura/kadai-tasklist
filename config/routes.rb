@@ -7,17 +7,17 @@ Rails.application.routes.draw do
 	delete 'logout', to: 'sessions#destroy'
 	
 	get 'signup', to: 'users#new'
-	# resources :users, only: [:index, :show, :new, :create]
+	resources :users, only: [:index, :show, :new, :create]
 	# For Following func
-	resources :users, only: [:index, :show, :new, :create, :update] do
-		member do
-			get :followings
-			get :followers
-		end
+	#	resources :users, only: [:index, :show, :new, :create, :update] do
+	#	member do
+	#		get :followings
+	#		get :followers
+	#	end
 		#collection do
 		#	get :search
 		#end
-	end
+	# end
 	
 	resources :tasks, only: [:create, :destroy, :show, :edit, :update, :index]
 	resources :relationships, only: [:create, :destroy, :update, :show]

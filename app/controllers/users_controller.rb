@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 	before_action :require_user_logged_in, only: [:index, :show]
+	before_action :correct_user, only: [:show, :new, :create, :edit, :destroy]
 
 	def index
 		@users = User.all.page(params[:page]).per(10)
@@ -32,5 +33,12 @@ class UsersController < ApplicationController
 	def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
+	
+	def correct_user
+		@micropost = current_user.tasks.find_by(id: params[:id])
+		unless @micropost
+			redirect_to root_url
+		end
+	end
 	
 end
